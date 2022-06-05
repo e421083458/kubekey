@@ -61,10 +61,14 @@ func (image Image) ImageName() string {
 // ImageRepo is used to generate image's repo address.
 func (image Image) ImageRepo() string {
 	var prefix string
-	//When 'KKZONE=cn' is used, image.NamespaceOverride should not be set to kubesphereio
-	if os.Getenv("KKZONE") == "cn" && image.RepoAddr == "" {
-		image.RepoAddr = cnRegistry
+
+	if os.Getenv("KKZONE") == "cn" {
+		if image.RepoAddr == "" || image.RepoAddr == cnRegistry {
+			image.RepoAddr = cnRegistry
+			image.NamespaceOverride = cnNamespaceOverride
+		}
 	}
+
 	if image.RepoAddr == "" {
 		if image.Namespace == "" {
 			prefix = ""
