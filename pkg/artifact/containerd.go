@@ -70,7 +70,7 @@ func Auths(manifest *common.ArtifactManifest) (auths map[string]registryAuth) {
 
 	err := json.Unmarshal(manifest.Spec.ManifestRegistry.Auths.Raw, &auths)
 	if err != nil {
-		logger.Log.Fatal("Failed to Parse Registry Auths configuration: %v", manifest.Spec.ManifestRegistry.Auths.Raw)
+		logger.Log.Fatal("Failed to Parse Registry Auths configuration: %s", string(manifest.Spec.ManifestRegistry.Auths.Raw))
 		return
 	}
 

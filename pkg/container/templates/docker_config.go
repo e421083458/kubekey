@@ -80,7 +80,7 @@ func Auths(kubeConf *common.KubeConf) (auths map[string]DockerConfigEntry) {
 
 	err := json.Unmarshal(kubeConf.Cluster.Registry.Auths.Raw, &auths)
 	if err != nil {
-		logger.Log.Fatal("Failed to Parse Registry Auths configuration: %v", kubeConf.Cluster.Registry.Auths.Raw)
+		logger.Log.Fatal("Failed to Parse Registry Auths configuration: %s", string(kubeConf.Cluster.Registry.Auths.Raw))
 		return
 	}
 
