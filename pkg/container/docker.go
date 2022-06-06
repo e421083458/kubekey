@@ -90,7 +90,7 @@ func (p *DockerLoginRegistry) Execute(runtime connector.Runtime) error {
 		}
 	}
 
-	cmd := "mkdir -p /.docker && cp -f $HOME/.docker/config.json /.docker/ && chmod 0644 /.docker/config.json "
+	cmd := "mkdir -p /.docker && cp -f /root/.docker/config.json /.docker/ && chmod 0644 /.docker/config.json "
 	if _, err := runtime.GetRunner().SudoCmd(cmd, false); err != nil {
 		return errors.Wrapf(err, "copy docker auths failed cmd: %v, err:%v", cmd, err)
 	}
